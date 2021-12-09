@@ -76,8 +76,22 @@ function createBox(item) {
 	`
 
 	// to do - speak event
+	box.addEventListener("click", () => {
+		setTextMessage(text)
+		speakText()
+
+		// Add active effect
+		box.classList.add("active")
+		setTimeout(() => {
+			box.classList.remove("active")
+		}, 800)
+	})
 	main.appendChild(box)
 }
+
+// Initialize speech synthethis
+// Intialize a variable with the OBJ
+const message = new SpeechSynthesisUtterance()
 
 // Create an array to store the voices
 let voices = []
@@ -91,6 +105,16 @@ function getVoices() {
 		option.innerText = `${voice.name} ${voice.lang}`
 		voicesSelect.appendChild(option)
 	})
+}
+
+// Set text
+function setTextMessage(text) {
+	message.text = text
+}
+
+// Speak text
+function speakText() {
+	speechSynthesis.speak(message)
 }
 
 // Voices changed
@@ -107,3 +131,6 @@ closeBtn.addEventListener("click", () =>
 )
 
 getVoices()
+
+// 1. click on btns and say text
+// 2. addEvent: when we add a new voice, it gets chosn as that voice, click btn to use that voice
