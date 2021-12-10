@@ -139,7 +139,10 @@ closeBtn.addEventListener("click", () =>
 // Change voice
 voicesSelect.addEventListener("change", setVoice)
 
-getVoices()
+// Read text button
+readBtn.addEventListener("click", () => {
+	setTextMessage(textArea.value)
+	speakText()
+})
 
-// 1. click on btns and say text
-// 2. addEvent: when we add a new voice, it gets chosn as that voice, click btn to use that voice
+getVoices()
